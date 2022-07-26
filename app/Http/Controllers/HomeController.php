@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,17 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function Logout(){
+       // Auth::logout();
+
+       Auth::logout();
+       $notification = array(
+        'message' => 'Successfully Logout',
+        'alert-type' => 'success'
+      );
+
+      return Redirect()->route('login')->with($notification);
     }
 }
